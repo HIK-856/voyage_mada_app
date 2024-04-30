@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:voyage_mada_app/Controller/HomeContenu.dart';
+import 'package:voyage_mada_app/Controller/ContenuController.dart';
 import 'package:voyage_mada_app/Model/contenuModel.dart';
 
 class TopDestinationViewWidget extends StatelessWidget {
@@ -15,7 +15,37 @@ class TopDestinationViewWidget extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       itemCount: contenus.length,
       itemBuilder: (context, index) {
-        ContenuModel contenu = contenus[index]; //parcours du liste 
+        ContenuModel contenu = contenus[index]; //parcours du liste
+
+        Container imageTopDestination = Container(
+          height: 90,
+          width: 90,
+          decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(30)),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image:
+                    AssetImage(contenu.nomImage), //nom venant de homeController
+              )),
+        );
+
+        Expanded nomTopDestination = Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  contenu.nomDestination, //nom venant de homeController
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                Text(contenu.nomEndroit), //nom venant de homeController
+              ],
+            ),
+          ),
+        );
         return Padding(
           padding: const EdgeInsets.only(right: 15),
           child: Container(
@@ -25,35 +55,8 @@ class TopDestinationViewWidget extends StatelessWidget {
                 color: Color.fromARGB(255, 231, 231, 231),
                 borderRadius: BorderRadius.all(Radius.circular(30))),
             child: Row(
-              children: [
-                Container(
-                  height: 90,
-                  width: 90,
-                  decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(30)),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(contenu.nomImage),//nom venant de homeController
-                      )),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          contenu.nomDestination,//nom venant de homeController
-                          style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
-                        Text(contenu.nomEndroit),//nom venant de homeController
-                      ],
-                    ),
-                  ),
-                )
-              ],
+              //affichage 
+              children: [imageTopDestination, nomTopDestination],
             ),
           ),
         );

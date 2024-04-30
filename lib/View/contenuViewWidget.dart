@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:voyage_mada_app/Model/contenuModel.dart';
-import 'package:voyage_mada_app/Controller/HomeContenu.dart';
+import 'package:voyage_mada_app/Controller/ContenuController.dart';
 import 'package:flutter_mvc/flutter_mvc.dart';
 
 class ContenuViewWidget extends StatelessWidget {

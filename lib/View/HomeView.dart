@@ -2,12 +2,16 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_mvc/flutter_mvc.dart';
+import 'package:voyage_mada_app/Controller/AnimationController.dart';
 import 'package:voyage_mada_app/Controller/HomeController.dart';
 import 'package:flutter_point_tab_bar/pointTabBar.dart';
 import 'package:voyage_mada_app/View/contenuViewWidget.dart';
 import 'package:voyage_mada_app/View/topViewWidget.dart';
+import 'package:flutter_animated_icons/flutter_animated_icons.dart';
 
 class HomeView extends MvcView<HomeController> {
+// animate() => myAnimation.reverse();
+
   List<Tab> tab = [
     const Tab(text: 'Beach'),
     const Tab(text: 'Mountain'),
@@ -34,12 +38,39 @@ class HomeView extends MvcView<HomeController> {
       Icon(Icons.menu),
     ],
   );
+
+  BottomAppBar bottomAppBar = const BottomAppBar(
+      // shape: CircularNotchedRectangle(),
+      notchMargin: 0,
+      child: Row(
+        // mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Icon(Icons.heart_broken),
+          Icon(Icons.heart_broken),
+          Icon(Icons.person_2)
+        ],
+      ));
   @override
   Widget buildView() {
     return DefaultTabController(
       initialIndex: 0,
       length: tab.length,
       child: Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
+        floatingActionButton: ClipOval(
+          child: Container(
+            height: 60,
+            width: 60,
+            decoration: const BoxDecoration(color: Colors.black),
+            child: const Icon(
+              Icons.home,
+              size: 40,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        bottomNavigationBar: bottomAppBar, //bottom navigation bar
         appBar: AppBar(
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(60),
@@ -84,7 +115,7 @@ class HomeView extends MvcView<HomeController> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.10,
                 child: TopDestinationViewWidget(),
-              )
+              ),
             ],
           ),
         ),
