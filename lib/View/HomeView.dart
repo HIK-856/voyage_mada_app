@@ -46,7 +46,7 @@ class HomeView extends MvcView<HomeController> {
         // mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Icon(Icons.heart_broken),
+          Icon(Icons.timelapse),
           Icon(Icons.heart_broken),
           Icon(Icons.person_2)
         ],
