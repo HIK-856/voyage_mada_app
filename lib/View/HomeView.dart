@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mvc/flutter_mvc.dart';
 import 'package:voyage_mada_app/Controller/HomeController.dart';
 import 'package:flutter_point_tab_bar/pointTabBar.dart';
+import 'package:voyage_mada_app/View/contenuViewWidget.dart';
 import 'package:voyage_mada_app/View/topViewWidget.dart';
-import 'package:voyage_mada_app/contenuView.dart';
 
 class HomeView extends MvcView<HomeController> {
   List<Tab> tab = [
@@ -16,13 +16,24 @@ class HomeView extends MvcView<HomeController> {
     const Tab(text: 'Foun'),
   ];
   List<Widget> tabContent = [
-    const ContenuView(),
+    ContenuViewWidget(),
     //const Center(child: Text('Contenu du Tab 2')),
     const Center(child: Text('Contenu du Tab 2')),
     const Center(child: Text('Contenu du Tab 3')),
     const Center(child: Text('Contenu du Tab 4')),
     const Center(child: Text('Contenu du Tab 5')),
   ];
+  SizedBox ecart = const SizedBox(height: 20);
+  Row topDestination = const Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Text(
+        'Top Destination',
+        style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+      ),
+      Icon(Icons.menu),
+    ],
+  );
   @override
   Widget buildView() {
     return DefaultTabController(
@@ -59,23 +70,23 @@ class HomeView extends MvcView<HomeController> {
             IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
           ],
         ),
-        body: Column(
-          children: [
-            SizedBox(
-                height: MediaQuery.of(context).size.height * 0.54,
-                child: TabBarView(children: tabContent)),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Top Destination',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-                Icon(Icons.menu),
-              ],
-            ),
-            const TopDestinationViewWidget()
-          ],
+        body: Padding(
+          padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20),
+          child: Column(
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.45,
+                child: TabBarView(children: tabContent),
+              ),
+              ecart,
+              topDestination,
+              ecart,
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.10,
+                child: TopDestinationViewWidget(),
+              )
+            ],
+          ),
         ),
       ),
     );

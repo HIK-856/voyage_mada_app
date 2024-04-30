@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mvc/flutter_mvc.dart';
 import 'package:voyage_mada_app/Controller/HomeController.dart';
 import 'package:voyage_mada_app/Model/HomeModel.dart';
-import 'package:voyage_mada_app/contenuView.dart';
 
 void main() {
   runApp(const MyApp());
