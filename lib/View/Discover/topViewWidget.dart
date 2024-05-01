@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:voyage_mada_app/Controller/ContenuController.dart';
 import 'package:voyage_mada_app/Model/contenuModel.dart';
+import 'package:voyage_mada_app/View/constante.dart';
 
 class TopDestinationViewWidget extends StatelessWidget {
   TopDestinationViewWidget({super.key});
@@ -36,11 +37,7 @@ class TopDestinationViewWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  contenu.nomDestination, //nom venant de homeController
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+                TitreH3(titre: contenu.nomDestination),
                 Text(contenu.nomEndroit), //nom venant de homeController
               ],
             ),

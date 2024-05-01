@@ -1,7 +1,6 @@
 import 'package:flutter_mvc/flutter_mvc.dart';
 import 'package:voyage_mada_app/Model/contenuModel.dart';
 import 'package:voyage_mada_app/View/HomeView.dart';
-import 'package:voyage_mada_app/View/topViewWidget.dart';
 
 class ContenuController {
   List<ContenuModel> getContenus() {

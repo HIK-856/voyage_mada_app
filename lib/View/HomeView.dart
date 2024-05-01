@@ -5,9 +5,10 @@ import 'package:flutter_mvc/flutter_mvc.dart';
 import 'package:voyage_mada_app/Controller/AnimationController.dart';
 import 'package:voyage_mada_app/Controller/HomeController.dart';
 import 'package:flutter_point_tab_bar/pointTabBar.dart';
-import 'package:voyage_mada_app/View/contenuViewWidget.dart';
-import 'package:voyage_mada_app/View/topViewWidget.dart';
+import 'package:voyage_mada_app/View/Discover/contenuViewWidget.dart';
+import 'package:voyage_mada_app/View/Discover/topViewWidget.dart';
 import 'package:flutter_animated_icons/flutter_animated_icons.dart';
+import 'package:voyage_mada_app/View/constante.dart';
 
 class HomeView extends MvcView<HomeController> {
 // animate() => myAnimation.reverse();
@@ -27,7 +28,7 @@ class HomeView extends MvcView<HomeController> {
     const Center(child: Text('Contenu du Tab 4')),
     const Center(child: Text('Contenu du Tab 5')),
   ];
-  SizedBox ecart = const SizedBox(height: 20);
+
   Row topDestination = const Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -46,8 +47,8 @@ class HomeView extends MvcView<HomeController> {
         // mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Icon(Icons.heart_broken),
-          Icon(Icons.heart_broken),
+          Icon(Icons.timelapse),
+          Icon(Icons.favorite_outline),
           Icon(Icons.person_2)
         ],
       ));
@@ -75,7 +76,8 @@ class HomeView extends MvcView<HomeController> {
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(60),
             child: TabBar(
-              labelPadding: const EdgeInsets.only(right: 30.0),
+              tabAlignment: TabAlignment.start,
+              labelPadding: const EdgeInsets.only(left: 20.0, right: 30.0),
               labelStyle: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
@@ -102,15 +104,18 @@ class HomeView extends MvcView<HomeController> {
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20),
+          padding: const EdgeInsets.only(left: 20.0, top: 20.0, bottom: 20.0),
           child: Column(
             children: [
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.45,
                 child: TabBarView(children: tabContent),
               ),
-              ecart,
-              topDestination,
+              ecart, //constante ecart 20.0
+              Padding(
+                padding: const EdgeInsets.only(right: 20.0),
+                child: topDestination,
+              ),
               ecart,
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.10,
