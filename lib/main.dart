@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvc/flutter_mvc.dart';
+import 'package:get/get.dart';
 import 'package:voyage_mada_app/Controller/HomeController.dart';
 import 'package:voyage_mada_app/Model/HomeModel.dart';
 
@@ -12,13 +13,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: Scaffold(
+        drawerEnableOpenDragGesture: false,
         body: Mvc(
           create: () => HomeController(),
           model: HomeModel('Discover'),
