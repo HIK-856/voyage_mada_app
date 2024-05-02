@@ -11,6 +11,30 @@ class DetailDestination extends StatefulWidget {
 }
 
 class _DetailDestinationState extends State<DetailDestination> {
+  Column nomDestination = Column(
+    mainAxisAlignment: MainAxisAlignment.start,
+    //crossAxisAlignment: CrossAxisAlignment.end,
+    children: [
+      TitreH3(
+        titre: 'Mantasoa Lodge',
+        size: 25,
+      ),
+      TitreH3(titre: 'Mantasoa Tana')
+    ],
+  );
+  Container choixImage = Container(
+      height: 60,
+      width: 60,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage('assets/images/mantasoa.jpg'),
+        ),
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
+      ));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +55,35 @@ class _DetailDestinationState extends State<DetailDestination> {
                 fit: BoxFit.cover,
                 image: AssetImage('assets/images/mantasoa.jpg'),
               ),
+            ),
+            //in the image
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                //nom destination dans l'image
+                nomDestination,
+                SingleChildScrollView(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.25,
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        choixImage,
+                        ecart,
+                        choixImage,
+                        ecart,
+                        choixImage
+                      ],
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
         ),
