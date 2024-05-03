@@ -27,6 +27,9 @@ class _DetailDestinationState extends State<DetailDestination> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //bottom app bar with bottomSheet
+      bottomSheet:
+          Container(color: Colors.white, height: 100, child: nomDestination),
       appBar: PreferredSize(
         preferredSize:
             Size.fromHeight(MediaQuery.of(context).size.height * 0.5),
@@ -34,19 +37,20 @@ class _DetailDestinationState extends State<DetailDestination> {
           leading: const Icon(Icons.arrow_back_outlined),
           actions: const [Icon(Icons.favorite_outline)],
           flexibleSpace: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(0),
-                    topRight: Radius.circular(0),
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30)),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage('assets/images/mantasoa.jpg'),
-                ),
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(0),
+                  topRight: Radius.circular(0),
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30)),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage('assets/images/mantasoa.jpg'),
               ),
-              //in the image
-              child: const ListChoix()),
+            ),
+            //in the image
+            child: const ListChoix(),
+          ),
         ),
       ),
       body: SingleChildScrollView(
