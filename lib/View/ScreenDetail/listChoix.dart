@@ -29,14 +29,17 @@ class ListChoix extends StatelessWidget {
         itemCount: listeChoix.length,
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
-          return Column(
-            children: [
-              Container(
-                  height: 200,
-                  width: 150,
-                  decoration: const BoxDecoration(color: Colors.white),
-                  child: listeChoix[index]),
-            ],
+          return Container(
+            decoration: const BoxDecoration(color: Colors.white),
+            height: 90,
+            //width: 20,
+            child: Column(
+              //mainAxisAlignment: MainAxisAlignment.end,
+              //crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                listeChoix[index],
+              ],
+            ),
           );
         },
       ),
