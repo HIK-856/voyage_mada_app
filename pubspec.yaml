@@ -39,6 +39,8 @@ dependencies:
   flutter_mvc: ^4.1.0
   flutter_point_tab_bar: ^0.2.0
   flutter_animated_icons: ^1.0.1
+  geolocator: ^11.0.0
+  google_maps_flutter: ^2.5.3
 
 
 dev_dependencies:
