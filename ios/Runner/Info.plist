@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Votre message expliquant pourquoi vous avez besoin de la géolocalisation en premier plan</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Votre message expliquant pourquoi vous avez besoin de la géolocalisation en arrière-plan (si nécessaire)</string>
+
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

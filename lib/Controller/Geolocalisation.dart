@@ -9,6 +9,18 @@ class Geolocalisation extends StatefulWidget {
   State<Geolocalisation> createState() => _GeolocalisationState();
 }
 
+void permission() async {
+  LocationPermission permission = await Geolocator.requestPermission();
+  if (permission == LocationPermission.denied) {
+    // L'utilisateur a refusé l'autorisation, gérer en conséquence
+  } else if (permission == LocationPermission.deniedForever) {
+    // L'utilisateur a refusé l'autorisation de manière permanente, gérer en conséquence
+  } else {
+    distance();
+    // L'utilisateur a accordé l'autorisation, vous pouvez maintenant utiliser la géolocalisation
+  }
+}
+
 void distance() async {
   // Obtenir la position actuelle
   Position position = await Geolocator.getCurrentPosition(
@@ -33,14 +45,18 @@ void distance() async {
 }
 
 class _GeolocalisationState extends State<Geolocalisation> {
+  // Demande de l'autorisation d'accès à la localisation
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IconButton(
-          onPressed: () {
-            distance();
-          },
-          icon: const Icon(Icons.place)),
+      body: Center(
+        child: IconButton(
+            onPressed: () {
+              permission();
+            },
+            icon: const Icon(Icons.place)),
+      ),
     );
   }
 }

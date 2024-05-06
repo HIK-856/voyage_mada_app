@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:voyage_mada_app/View/ScreenDetail/Description.dart';
 import 'package:voyage_mada_app/View/ScreenDetail/contenu_a_p_i.dart';
 import 'package:voyage_mada_app/View/ScreenDetail/listChoix.dart';
@@ -13,7 +14,7 @@ class DetailDestination extends StatefulWidget {
 }
 
 class _DetailDestinationState extends State<DetailDestination> {
-  Geolocalisation geolocalisation =  Geolocalisation();
+  Geolocalisation geolocalisation = const Geolocalisation();
   @override
   Widget build(BuildContext context) {
     Row nomDestination = Row(
@@ -40,7 +41,9 @@ class _DetailDestinationState extends State<DetailDestination> {
             width: 70,
             decoration: const BoxDecoration(color: Colors.black),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                const Geolocalisation();
+              },
               icon: const Icon(Icons.arrow_forward),
             ),
           ),
@@ -64,8 +67,9 @@ class _DetailDestinationState extends State<DetailDestination> {
             padding: const EdgeInsets.only(left: 20),
             child: IconButton(
                 onPressed: () {
-                  //geolocalisation
-                  
+                  Get.to(
+                    () => const Geolocalisation(),
+                  );
                 },
                 icon: const Icon(Icons.arrow_back_outlined)),
           ),
@@ -78,10 +82,11 @@ class _DetailDestinationState extends State<DetailDestination> {
           flexibleSpace: Container(
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(0),
-                  topRight: Radius.circular(0),
-                  bottomLeft: Radius.circular(30),
-                  bottomRight: Radius.circular(30),),
+                topLeft: Radius.circular(0),
+                topRight: Radius.circular(0),
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30),
+              ),
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage('assets/images/mantasoa.jpg'),
