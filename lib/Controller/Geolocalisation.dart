@@ -9,44 +9,38 @@ class Geolocalisation extends StatefulWidget {
   State<Geolocalisation> createState() => _GeolocalisationState();
 }
 
-class _GeolocalisationState extends State<Geolocalisation> {
-  Future<Position> _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
+void distance() async {
+  // Obtenir la position actuelle
+  Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high);
 
-    // Test if location services are enabled.
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
-    }
+  double latitude = position.latitude;
+  double longitude = position.longitude;
 
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
-      }
-    }
+  // Coordonnées géographiques du pays (par exemple, la France)
+  double countryLatitude = 46.603354;
+  double countryLongitude = 1.888334;
 
-    if (permission == LocationPermission.deniedForever) {
-      // Permissions are denied forever, handle appropriately.
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
+  // Calculer la distance entre la position actuelle et le pays
+  double distanceInMeters = Geolocator.distanceBetween(
+      latitude, longitude, countryLatitude, countryLongitude);
 
-    // When we reach here, permissions are granted and we can
-    // continue accessing the position of the device.
-    return await Geolocator.getCurrentPosition();
-  }
+  // Convertir la distance en kilomètres
+  double distanceInKm = distanceInMeters / 1000;
 
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
+  print(
+      'La distance entre votre position actuelle et le pays est : $distanceInKm km');
 }
 
-@override
-Widget build(BuildContext context) {
-  return const Scaffold();
+class _GeolocalisationState extends State<Geolocalisation> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: IconButton(
+          onPressed: () {
+            distance();
+          },
+          icon: const Icon(Icons.place)),
+    );
+  }
 }
