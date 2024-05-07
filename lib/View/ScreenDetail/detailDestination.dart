@@ -14,7 +14,20 @@ class DetailDestination extends StatefulWidget {
 }
 
 class _DetailDestinationState extends State<DetailDestination> {
-  Geolocalisation geolocalisation = const Geolocalisation();
+  Geolocalisation geolocalisation = Geolocalisation();
+  double _distance = 0;
+  @override
+  void initState() {
+    super.initState();
+    // Écouter les changements de distance
+    geolocalisation.onDistanceChanged = (distance) {
+      setState(() {
+        _distance = distance;
+      });
+    };
+    geolocalisation.permission();
+  }
+
   @override
   Widget build(BuildContext context) {
     Row nomDestination = Row(
@@ -41,9 +54,7 @@ class _DetailDestinationState extends State<DetailDestination> {
             width: 70,
             decoration: const BoxDecoration(color: Colors.black),
             child: IconButton(
-              onPressed: () {
-                const Geolocalisation();
-              },
+              onPressed: () {},
               icon: const Icon(Icons.arrow_forward),
             ),
           ),
@@ -66,12 +77,7 @@ class _DetailDestinationState extends State<DetailDestination> {
           leading: Padding(
             padding: const EdgeInsets.only(left: 20),
             child: IconButton(
-                onPressed: () {
-                  Get.to(
-                    () => const Geolocalisation(),
-                  );
-                },
-                icon: const Icon(Icons.arrow_back_outlined)),
+                onPressed: () {}, icon: const Icon(Icons.arrow_back_outlined)),
           ),
           actions: const [
             Padding(
@@ -105,7 +111,9 @@ class _DetailDestinationState extends State<DetailDestination> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ContenuAPI(titre: 'Distance', value: '5km'),
+                  ContenuAPI(
+                      titre: 'Distance',
+                      value: '${_distance.toStringAsFixed(1)}km'),
                   ContenuAPI(titre: 'Temp', value: '20 C'),
                   ContenuAPI(titre: 'Rating', value: '4.8')
                 ],
