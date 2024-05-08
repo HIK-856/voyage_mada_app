@@ -41,6 +41,7 @@ dependencies:
   flutter_animated_icons: ^1.0.1
   geolocator: ^11.0.0
   google_maps_flutter: ^2.5.3
+  weather: ^3.1.1
 
 
 dev_dependencies:

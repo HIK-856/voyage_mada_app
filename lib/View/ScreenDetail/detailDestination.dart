@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:voyage_mada_app/Controller/temperature.dart';
 import 'package:voyage_mada_app/View/ScreenDetail/Description.dart';
 import 'package:voyage_mada_app/View/ScreenDetail/contenu_a_p_i.dart';
 import 'package:voyage_mada_app/View/ScreenDetail/listChoix.dart';
 import 'package:voyage_mada_app/View/constante.dart';
 import 'package:voyage_mada_app/Controller/Geolocalisation.dart';
+
+
 
 class DetailDestination extends StatefulWidget {
   const DetailDestination({super.key});
@@ -15,7 +18,9 @@ class DetailDestination extends StatefulWidget {
 
 class _DetailDestinationState extends State<DetailDestination> {
   Geolocalisation geolocalisation = Geolocalisation();
+  WeatherService weatherService = WeatherService();
   double _distance = 0;
+  double _temperature = 0;
   @override
   void initState() {
     super.initState();
@@ -24,10 +29,24 @@ class _DetailDestinationState extends State<DetailDestination> {
       setState(() {
         _distance = distance;
       });
+      // Appeler la méthode pour récupérer la température en temps réel
+      _fetchTemperature();
     };
     geolocalisation.permission();
   }
 
+
+Future<void> _fetchTemperature() async {
+    try {
+      final position = await geolocalisation.distance();
+      final temperature = await weatherService.fetchTemperature(position.latitude, position.longitude);
+      setState(() {
+        _temperature = temperature;
+      });
+    } catch (e) {
+      print('Failed to fetch temperature: $e');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     Row nomDestination = Row(

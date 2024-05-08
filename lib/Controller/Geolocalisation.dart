@@ -4,7 +4,9 @@ import 'package:geolocator/geolocator.dart';
 
 class Geolocalisation {
   double nombreDistance = 0;
-
+  double countryLatitude = 46.603354;
+  double countryLongitude = 1.888334;
+  String positionActuel = '';
   // Déclaration du callback pour notifier les changements de distance
   late void Function(double) onDistanceChanged;
   void permission() async {
@@ -19,7 +21,7 @@ class Geolocalisation {
     }
   }
 
-  void distance() async {
+  distance() async {
     // Obtenir la position actuelle
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
@@ -28,8 +30,6 @@ class Geolocalisation {
     double longitude = position.longitude;
 
     // Coordonnées géographiques du pays (par exemple, la France)
-    double countryLatitude = 46.603354;
-    double countryLongitude = 1.888334;
 
     // Calculer la distance entre la position actuelle et le pays
     double distanceInMeters = Geolocator.distanceBetween(
@@ -42,6 +42,7 @@ class Geolocalisation {
         'La distance entre votre position actuelle et le pays est : $distanceInKm km');
     nombreDistance = distanceInKm;
     // Notifier les écouteurs du changement de distance
+    positionActuel = position.toString();
     onDistanceChanged(nombreDistance);
   }
 }
