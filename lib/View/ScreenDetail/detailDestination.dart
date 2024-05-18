@@ -63,7 +63,7 @@ Future<void> _fetchTemperature() async {
               titre: 'Total prix',
               size: 25,
             ),
-            TitreH3(titre: 'AR 20 000')
+            //TitreH3(titre: 'AR 20 000')
           ],
         ),
         //reservation boutton
